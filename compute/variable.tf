@@ -19,3 +19,29 @@ variable "instance_configs" {
 #   description = "List of subnets"
 #   type        = list(string)
 # }
+
+# variable "instance_names" {
+#   type = list(string)
+#   default = ["instance-1-1", "instance-2-1"]
+# }
+
+# variable "tag_sets" {
+#   type = list(object({
+#     instance_name = string
+#     tags          = list(string)
+#   }))
+#   default = [
+#     {
+#       instance_name = "instance1-1"
+#       tags          = ["ssh-access", "http-server"]
+#     },
+#     {
+#       instance_name = "instance2-1"
+#       tags          = ["http-server"]
+#     },
+    # {
+    #   instance_name = "instance3"
+    #   tags          = ["https-server"]
+    # },
+#   ]
+# }
