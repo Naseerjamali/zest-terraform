@@ -4,7 +4,8 @@ resource "google_compute_firewall" "firewall_rule" {
   network  = var.vpc_id
   direction = var.firewalls[count.index].direction
   priority  = var.firewalls[count.index].priority
-
+  #targets = var.firewalls[count.index].targets
+  target_tags = var.firewalls[count.index].target_tags
   allow {
     protocol = var.firewalls[count.index].protocol
     ports    = var.firewalls[count.index].ports

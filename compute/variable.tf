@@ -7,10 +7,15 @@ variable "instance_configs" {
     image        = string
     subnet       = string
     nat_ip       = string
+    tags = list(string)
+    labels = map(string)
     # subnet_self_link = string
   }))
 }
 
+# variable "tags"{
+#   type = string
+# }
 # variable "static_ip_name" {
 #   type = string
 #   name = "static-ip"

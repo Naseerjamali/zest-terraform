@@ -30,6 +30,8 @@ instance_configs = [
     image        = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts"
     subnet       = "private-subnet-1-1"
     nat_ip       = "0.0.0.0"
+    tags         = ["ssh-vm"]
+    labels       = { env = "qa" }
     #tags = "allow-ssh"
     # subnet       = module.subnet.subnets["private-subnet-1"]
   },
@@ -41,6 +43,8 @@ instance_configs = [
     image        = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts"
     subnet       = "private-subnet-1-1"
     nat_ip       = "8.8.8.8"
+    tags         = []
+    labels       = { env = "prod" }
     # subnet       = module.subnet.subnets["private-subnet-1"]
   },
 ]
@@ -53,6 +57,9 @@ firewalls = [
     protocol      = "tcp"
     ports         = ["22"]
     source_ranges = ["35.235.240.0/20"]
+    #targets = []
+    target_tags = []
+
   },
   {
     name          = "allow-lb-healthcheck-1"
@@ -61,6 +68,21 @@ firewalls = [
     protocol      = "tcp"
     ports         = ["0-65535"]
     source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
+    target_tags   = ["ssh-vm"]
+    #targets = "Specified target tags"
   },
   # Add more rules as needed
+]
+
+buckets = [
+  {
+    name                        = "my-bucket-909"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    uniform_bucket_level_access = false
+    role = "READER"
+    entity = "allUsers"
+
+  },
+
 ]

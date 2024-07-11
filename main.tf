@@ -44,4 +44,10 @@ module "firewalls" {
   source    = "./firewalls"
   vpc_id    = module.vpc.vpc_id
   firewalls = var.firewalls
+  # gcloudtags = var.tags
+}
+
+module "buckets" {
+  source  = "./buckets"
+  buckets = var.buckets
 }

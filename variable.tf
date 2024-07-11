@@ -35,6 +35,8 @@ variable "instance_configs" {
     image        = string
     subnet       = string
     nat_ip       = string
+    tags         = list(string)
+    labels       = map(string)
   }))
 }
 
@@ -47,5 +49,19 @@ variable "firewalls" {
     protocol      = string
     ports         = list(string)
     source_ranges = list(string)
+    target_tags   = list(string)
+    #targets = list(string)
+  }))
+}
+
+variable "buckets" {
+  description = "A list of buckets"
+  type = list(object({
+    name                        = string
+    location                    = string
+    storage_class               = string
+    uniform_bucket_level_access = bool
+    role = string
+    entity = string
   }))
 }

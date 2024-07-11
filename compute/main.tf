@@ -9,6 +9,8 @@ resource "google_compute_instance" "instance" {
   name         = var.instance_configs[count.index].name
   machine_type = var.instance_configs[count.index].machine_type
   zone         = var.instance_configs[count.index].zone
+  tags = var.instance_configs[count.index].tags
+  labels = var.instance_configs[count.index].labels
   # tags = length([for tag_set in var.tag_sets : tag_set.tags if tag_set.instance_name == var.instance_configs[count.index].name]) > 0 ?
   #   [element([for tag_set in var.tag_sets : tag_set.tags if tag_set.instance_name == var.instance_configs[count.index].name], 0)] : []
 
@@ -25,7 +27,7 @@ resource "google_compute_instance" "instance" {
       nat_ip = google_compute_address.static-ip[count.index].address
     }
   }
-  #tags = ["allow-ssh"]
+  # tags = var.tags
 }
 
 #  depends_on = [

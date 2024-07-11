@@ -7,8 +7,11 @@ variable "firewalls" {
     protocol      = string
     ports         = list(string)
     source_ranges = list(string)
+    target_tags = list(string)
+    #targets = list(string)
   }))
 }
+
 
 variable "vpc_id" {
   description = "The ID of the VPC"
