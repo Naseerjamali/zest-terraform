@@ -9,9 +9,17 @@ variable "instance_configs" {
     nat_ip       = string
     tags = list(string)
     labels = map(string)
+    desired_status = string
     # subnet_self_link = string
   }))
 }
+# variable "instance_groups" {
+#     description = "A list of instance groups"
+#     type = list(object({
+#     name = string
+#     zone = string
+#     }))
+# }
 
 # variable "tags"{
 #   type = string

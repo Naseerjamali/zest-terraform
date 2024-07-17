@@ -1,5 +1,5 @@
 vpc_name    = "my-vpc-1"
-region      = "us-central1"
+region      = "asia-south1"
 router_name = "my-router-1"
 nat_name    = "my-nat-gateway-1"
 
@@ -24,27 +24,29 @@ subnet_configs = [
 
 instance_configs = [
   {
-    name         = "instance-1-1"
-    machine_type = "n1-standard-1"
-    zone         = "us-central1-a"
-    image        = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts"
-    subnet       = "private-subnet-1-1"
-    nat_ip       = "0.0.0.0"
-    tags         = ["ssh-vm"]
-    labels       = { env = "qa" }
-    #tags = "allow-ssh"
-    # subnet       = module.subnet.subnets["private-subnet-1"]
+    name           = "instance-1-1"
+    machine_type   = "n1-standard-1"
+    zone           = "asia-south1-a"
+    image          = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts"
+    subnet         = "private-subnet-1-1"
+    nat_ip         = ""
+    tags           = ["ssh-vm"]
+    desired_status = "RUNNING"
+    labels         = { env = "qa" }
+
   },
   # Add 13 more instances as needed
   {
-    name         = "instance-2-1"
-    machine_type = "n1-standard-1"
-    zone         = "us-central1-a"
-    image        = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts"
-    subnet       = "private-subnet-1-1"
-    nat_ip       = "8.8.8.8"
-    tags         = []
-    labels       = { env = "prod" }
+    name           = "instance-2-1"
+    machine_type   = "n1-standard-1"
+    zone           = "asia-south1-as
+    "
+    image          = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2204-lts"
+    subnet         = "private-subnet-1-1"
+    nat_ip         = ""
+    desired_status = "RUNNING"
+    tags           = []
+    labels         = { env = "prod" }
     # subnet       = module.subnet.subnets["private-subnet-1"]
   },
 ]
@@ -74,15 +76,136 @@ firewalls = [
   # Add more rules as needed
 ]
 
-buckets = [
+
+buckets = {
+  bucket1 = {
+    name     = "asjdfoiajdsfidsa"
+    location = "asia-south1"
+    public   = true
+  }
+  bucket2 = {
+    name     = "adsjfasdfadj"
+    location = "asia-south1"
+    public   = true
+  }
+  bucket3 = {
+    name     = "ljljkjlkl"
+    location = "asia-south1"
+    public   = true
+  }
+  bucket4 = {
+    name     = "iutoiewutoeut"
+    location = "asia-south1"
+    public   = true
+  }
+  bucket5 = {
+    name     = "9j9j9j9"
+    location = "asia-south1"
+    public   = true
+  }
+
+  bucket6 = {
+    name     = "r34r4r4r"
+    location = "asia-south1"
+    public   = true
+  }
+
+  bucket7 = {
+    name     = "9387549875745jj"
+    location = "asia-south1"
+    public   = false
+  }
+
+  bucket8 = {
+    name     = "jijiengirnn"
+    location = "asia-south1"
+    public   = false
+  }
+
+  bucket9 = {
+    name     = "riewuroiureo"
+    location = "asia-south1"
+    public   = false
+  }
+
+  bucket10 = {
+    name     = "mkmkoookn"
+    location = "asia-south1"
+    public   = false
+  }
+
+  bucket11 = {
+    name     = "qwefefeee"
+    location = "asia-south1"
+    public   = false
+  }
+
+  bucket12 = {
+    name     = "nkaienjgnei"
+    location = "asia-south1"
+    public   = false
+  }
+
+  bucket13 = {
+    name     = "aalslseiekdkdgn"
+    location = "asia-south1"
+    public   = false
+  }
+
+  bucket14 = {
+    name     = "qweruiop"
+    location = "asia-south1"
+    public   = false
+  }
+
+  bucket15 = {
+    name     = "poiuqwer"
+    location = "asia-south1"
+    public   = false
+  }
+
+  bucket16 = {
+    name     = "vnmczskjher"
+    location = "asia-south1"
+    public   = false
+
+  }
+
+  bucket17 = {
+    name     = "aasdfjkllo"
+    location = "asia-south1"
+    public   = false
+  }
+}
+
+instance_groups = [
   {
-    name                        = "my-bucket-909"
-    location                    = "us-central1"
-    storage_class               = "STANDARD"
-    uniform_bucket_level_access = false
-    role = "READER"
-    entity = "allUsers"
+    name      = "my-instance-group-dummy"
+    zone      = "asia-south1"
+    #instance = "instance-1-1"
 
   },
+  {
+    name      = "my-instance-group-dummy2"
+    zone      = "asia-south1"
+    #instance = "instance-2-1"
+  }
 
 ]
+
+
+# buckets = [
+#   {
+#     name                        = "my-bucket-909"
+#     location                    = "asia-south1"
+#     storage_class               = "STANDARD"
+#     uniform_bucket_level_access = false
+#     role                        = "READER"
+#     entity                      = "allUsers"
+#     #object_name = "image1"
+#     #content      = "<html><body>Hello World!</body></html>"
+#     #source = "image1.jpg"
+
+#   },
+
+# ]

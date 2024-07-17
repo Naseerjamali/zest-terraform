@@ -29,14 +29,15 @@ variable "subnet_configs" {
 variable "instance_configs" {
   description = "A list of instance configurations"
   type = list(object({
-    name         = string
-    machine_type = string
-    zone         = string
-    image        = string
-    subnet       = string
-    nat_ip       = string
-    tags         = list(string)
-    labels       = map(string)
+    name           = string
+    machine_type   = string
+    zone           = string
+    image          = string
+    subnet         = string
+    nat_ip         = string
+    tags           = list(string)
+    labels         = map(string)
+    desired_status = string
   }))
 }
 
@@ -54,14 +55,41 @@ variable "firewalls" {
   }))
 }
 
+
 variable "buckets" {
-  description = "A list of buckets"
-  type = list(object({
-    name                        = string
-    location                    = string
-    storage_class               = string
-    uniform_bucket_level_access = bool
-    role = string
-    entity = string
+  description = "A map of bucket configurations."
+  type = map(object({
+    name     = string
+    location = string
+    public   = bool
   }))
 }
+
+
+
+variable "instance_groups" {
+  description = "A list of instance groups"
+  type = list(object({
+    name = string
+    zone = string
+    #instance = string
+  }))
+}
+
+# variable "instance" {
+#   type = string
+# }
+
+# variable "buckets" {
+#   description = "A list of buckets"
+#   type = list(object({
+#     name                        = string
+#     location                    = string
+#     storage_class               = string
+#     uniform_bucket_level_access = bool
+#     role                        = string
+#     entity                      = string
+#     object_name = string
+#     content = string
+#   }))
+# }

@@ -31,7 +31,7 @@ module "nat_gateway" {
 module "compute" {
   source           = "./compute"
   instance_configs = var.instance_configs
-
+  #instance_groups  = var.instance_groups
 
   depends_on = [
     module.subnet,     # Ensure subnets are created
@@ -48,6 +48,38 @@ module "firewalls" {
 }
 
 module "buckets" {
-  source  = "./buckets"
-  buckets = var.buckets
+  source = "./buckets"
+
+  for_each    = var.buckets
+  bucket_name = each.value.name
+  location    = each.value.location
+  public      = each.value.public
 }
+
+
+module "instance_groups" {
+  source           = "./instance_groups"
+  instance_groups  = var.instance_groups
+  instance_configs = var.instance_configs
+  #instances = module.compute.google_compute_instance.instance.name
+  instances_id      = module.compute.instances
+  #instances_id2 = module.compute.instances2
+  #instance = var.instance
+  #instance_configs = var.instance_configs
+  #instance_id = module.compute.instance_id
+  # depends_on = [
+  #   module.compute
+  # ]
+  #instance = google_compute_instance.instance.id
+  #instances = module.compute.instance_id
+}
+
+#}
+
+
+
+# module "buckets" {
+#   source  = "./buckets"
+#   #buckets = var.buckets
+#   bucket_name = var.bucket_name
+# }
